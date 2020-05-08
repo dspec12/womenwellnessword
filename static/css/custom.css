@@ -1,0 +1,9 @@
+/* your styles go here */
+.navbar-header .image {
+    max-width: 40%;
+   }
+
+footer.main-footer {
+    background-color: whitesmoke;
+    padding-top: 50px;
+}

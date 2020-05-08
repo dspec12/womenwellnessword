@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<style>
+  .post-body img {
+    width: 100%;
+  }
+</style>
+
+<div class="container">
+  <div class="row">
+    <!-- Latest Posts -->
+    <main class="post blog-post col-lg-8">
+      <div class="container">
+        <div class="post-single">
+          <div class="post-thumbnail"><img src="{{ post.thumbnail.url }}" alt="..." class="img-fluid"></div>
+          <div class="post-details">
+            <div class="post-meta d-flex justify-content-between">
+              <div class="category">
+                {% for cat in post.categories.all %}
+                <a href="#">{{ cat }}</a>
+                {% endfor %}
+              </div>
+            </div>
+            <h1>{{ post.title }}<a href="#"><i class="fa fa-bookmark-o"></i></a></h1>
+            <div class="post-footer d-flex align-items-center flex-column flex-sm-row"><a href="#"
+                class="author d-flex align-items-center flex-wrap">
+                <div class="avatar"><img src="{{ post.author.profile_picture.url }}" alt="..." class="img-fluid"></div>
+                <div class="title"><span>{{ post.author.user.username }}</span></div>
+              </a>
+              <div class="d-flex align-items-center flex-wrap">
+                <div class="date"><i class="icon-clock"></i>{{ post.timestamp }}</div>
+                <div class="comments meta-last"><i class="icon-comment"></i><span class="disqus-comment-count"
+                    data-disqus-identifier="{{ post.slug }}"></span></div>
+              </div>
+            </div>
+            <div class="post-body">
+              {{ post.body | safe }}
+            </div>
+            <div class="post-comments">
+              {% include 'disqus.html' with slug=post.slug url=post.post.get_absolute_url %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    {% include 'sidebar.html' with most_recent=most_recent category_count=category_count %}
+  </div>
+</div>
+
+{% endblock content %}
