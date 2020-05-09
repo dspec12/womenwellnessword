@@ -37,3 +37,11 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse("post_detail", kwargs={"pk": self.pk, "slug": self.slug})
+
+    def save(self):
+        if self.featured == True:
+            items = Post.objects.filter(featured=True)
+            for i in items:
+                i.featured = False
+                i.save()
+        super().save()
