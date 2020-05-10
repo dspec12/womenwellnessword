@@ -15,6 +15,7 @@ boto3 = "*"
 pillow = "*"
 django-autoslug = "*"
 django-summernote = "*"
+django-crispy-forms = "*"
 
 [requires]
 python_version = "3.8"
