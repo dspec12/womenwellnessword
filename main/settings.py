@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "whitenoise.runserver_nostatic",  # Third Party
     "django.contrib.staticfiles",
+    "users.apps.UsersConfig",  #  Local
     "blog.apps.BlogConfig",  # Local
     "django_summernote",  #  Third Party
 ]
@@ -73,6 +74,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "main.wsgi.application"
 
+AUTH_USER_MODEL = "users.CustomUser"
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
