@@ -7,11 +7,13 @@ User = get_user_model()
 
 
 class Author(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    fullname = models.CharField(max_length=50)
+    display_name = models.CharField(max_length=50)
     profile_picture = models.ImageField()
+    bio = models.TextField()
 
     def __str__(self):
-        return self.user.username
+        return self.fullname
 
 
 class Category(models.Model):
@@ -27,10 +29,11 @@ class Post(models.Model):
     overview = models.CharField(max_length=200)
     timestamp = models.DateTimeField(auto_now_add=True)
     body = models.TextField()
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    author = models.ForeignKey(Author, null=True, on_delete=models.SET_NULL)
     thumbnail = models.ImageField()
     categories = models.ManyToManyField(Category)
-    featured = models.BooleanField()
+    featured = models.BooleanField(default=False)
+    published = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
