@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "users.apps.UsersConfig",  #  Local
     "blog.apps.BlogConfig",  # Local
     "django_summernote",  #  Third Party
+    "cms.apps.CmsConfig",  # Local
 ]
 
 MIDDLEWARE = [

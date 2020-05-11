@@ -4,12 +4,13 @@ from django.contrib import admin
 from django.urls import path, include
 
 from blog.views import index, blog, post_detail, category
+from cms.views import cms_index
 
 urlpatterns = [
     # Admin
     path("summernote/", include("django_summernote.urls")),
     path("admin/", admin.site.urls),
-    # path("godmode/", godmode, name="godmode" )
+    path("godmode/", cms_index, name="godmode"),
     # Pages
     path("", index, name="home"),
     # Blog

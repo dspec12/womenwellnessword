@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+{% include "cms_head.html" %}
+
+<body>
+
+    <!-- wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        {% include "cms_sidebar.html" %}
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        {% block cms_content %}
+        {% endblock cms_content %}
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+
+    <!-- Menu Toggle Script -->
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+
+</body>
+
+</html>
