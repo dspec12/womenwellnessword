@@ -2,22 +2,29 @@
 {% load static %}
 
 
-{% block cms_content %}
+{% block content %}
 
-<div id="page-content-wrapper">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1>Simple Sidebar</h1>
-                <p>This template has a responsive menu toggling system. The menu will appear collapsed on
-                    smaller screens, and will appear non-collapsed on larger screens. When toggled using the
-                    button below, the menu will appear/disappear. On small screens, the page content will be
-                    pushed off canvas.</p>
-                <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
-                <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
-            </div>
-        </div>
-    </div>
-</div>
+<h2>Admin</h2>
+<p>Create or remove users to the admin area.</p>
 
-{% endblock cms_content %}
+<div class="line"></div>
+
+<h2>Site Pages</h2>
+<p>Edit specific sections of the website</p>
+
+<div class="line"></div>
+
+<h2>Blog</h2>
+<p>Add, remove, or modify various blog componants. This includes articles, authors, and categories.</p>
+
+<div class="line"></div>
+
+<h3>Bible Studies</h3>
+<p>Place holder. Yet to be implemented</p>
+
+<div class="line"></div>
+
+<h3>Discus</h3>
+<p>External link to the discus admin portal. Use this to moderate comments</p>
+
+{% endblock content %}

@@ -11,6 +11,8 @@ urlpatterns = [
     path("summernote/", include("django_summernote.urls")),
     path("admin/", admin.site.urls),
     path("godmode/", cms_index, name="godmode"),
+    # Auth
+    path("accounts/", include("django.contrib.auth.urls")),
     # Pages
     path("", index, name="home"),
     # Blog

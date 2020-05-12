@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "whitenoise.runserver_nostatic",  # Third Party
     "django.contrib.staticfiles",
+    "crispy_forms",  # Third Party
     "users.apps.UsersConfig",  #  Local
     "blog.apps.BlogConfig",  # Local
     "django_summernote",  #  Third Party
@@ -143,3 +144,10 @@ SUMMERNOTE_CONFIG = {
     # "width": "100%",
     # "height": "800",
 }
+
+# Auth Redirction
+LOGIN_REDIRECT_URL = "godmode"
+LOGOUT_REDIRECT_URL = "login"
+
+# Crispy Forms
+CRISPY_TEMPLATE_PACK = "bootstrap4"
