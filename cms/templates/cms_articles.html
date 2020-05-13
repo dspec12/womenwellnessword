@@ -1,0 +1,38 @@
+{% extends 'cms_base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<h2>Blog Articles</h2>
+
+<div class="line"></div>
+<button type="button" class="btn btn-secondary" style="margin-bottom: 15px;"><a href="{% url 'cms_new_article' %}">New
+        Article</a></button>
+<table class=" table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Timestamp</th>
+            <th scope="col">Published</th>
+            <th scope="col">Featured</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for post in object_list %}
+        <tr>
+            <td scope="row"><a href="{% url 'cms_edit_article' post.pk %}">{{ post.title }}</a></td>
+            <td>{{ post.author }}</td>
+            <td>{{ post.timestamp }}</td>
+            <td>{{ post.published| yesno:"Yes,No" }}</td>
+            <td>{{ post.featured| yesno:"Yes,No" }}</td>
+            <td><button type="button" class="btn btn-outline-danger"><a
+                        href="{% url 'cms_delete_article' post.pk %}">Delete</a></button></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}

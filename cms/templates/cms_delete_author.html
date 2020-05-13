@@ -1,0 +1,15 @@
+{% extends 'cms_base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+{% block content %}
+
+<form action="" method="post">{% csrf_token %}
+    <p>Are you sure you want to delete author:</p>
+    <h5>"{{ author.fullname }}"?</h5>
+    <input type="submit" class="btn btn-danger" value="Confirm" />
+    <a class="btn btn-secondary btn-md" href="{% url 'authors' %}" role="button">Cancel</a>
+</form>
+
+{% endblock content %}

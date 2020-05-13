@@ -1,0 +1,33 @@
+{% extends 'cms_base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<h2>Blog Authors</h2>
+
+<div class="line"></div>
+<button type="button" class="btn btn-secondary" style="margin-bottom: 15px;"><a href="{% url 'cms_new_author' %}">New
+        Author</a></button>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Display Name</th>
+            <th scope="col">Full Name</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for author in object_list %}
+        <tr>
+            <td scope="row"><a href="{% url 'cms_edit_author' author.pk %}">{{ author.display_name }}</a></td>
+            <td><a href="{% url 'cms_edit_author' author.pk %}">{{ author.fullname }}</a></td>
+            <td><button type="button" class="btn btn-outline-danger"><a
+                        href="{% url 'cms_delete_author' author.pk %}">Delete</a></button></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}

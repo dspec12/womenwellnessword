@@ -4,13 +4,64 @@ from django.contrib import admin
 from django.urls import path, include
 
 from blog.views import index, blog, post_detail, category
-from cms.views import cms_index
+from cms.views import (
+    cms_index,
+    CmsArticles,
+    CmsAuthors,
+    CmsCategories,
+    CmsEditArticle,
+    CmsEditAuthor,
+    CmsEditCategory,
+    CmsDeleteArticle,
+    CmsDeleteAuthor,
+    CmsDeleteCategory,
+    CmsNewArticle,
+    CmsNewAuthor,
+    CmsNewCategory,
+)
 
 urlpatterns = [
     # Admin
     path("summernote/", include("django_summernote.urls")),
     path("admin/", admin.site.urls),
+    #  CMS
     path("godmode/", cms_index, name="godmode"),
+    path("godmode/articles", CmsArticles.as_view(), name="articles"),
+    path(
+        "godmode/articles/edit/<int:pk>/",
+        CmsEditArticle.as_view(),
+        name="cms_edit_article",
+    ),
+    path(
+        "godmode/articles/delete/<int:pk>/",
+        CmsDeleteArticle.as_view(),
+        name="cms_delete_article",
+    ),
+    path("godmode/articles/new/", CmsNewArticle.as_view(), name="cms_new_article",),
+    path("godmode/authors", CmsAuthors.as_view(), name="authors"),
+    path(
+        "godmode/authors/edit/<int:pk>/",
+        CmsEditAuthor.as_view(),
+        name="cms_edit_author",
+    ),
+    path(
+        "godmode/authors/delete/<int:pk>/",
+        CmsDeleteAuthor.as_view(),
+        name="cms_delete_author",
+    ),
+    path("godmode/authors/new/", CmsNewAuthor.as_view(), name="cms_new_author",),
+    path("godmode/categories", CmsCategories.as_view(), name="categories"),
+    path(
+        "godmode/categories/edit/<int:pk>/",
+        CmsEditCategory.as_view(),
+        name="cms_edit_category",
+    ),
+    path(
+        "godmode/categories/delete/<int:pk>/",
+        CmsDeleteCategory.as_view(),
+        name="cms_delete_category",
+    ),
+    path("godmode/categories/new/", CmsNewCategory.as_view(), name="cms_new_category",),
     # Auth
     path("accounts/", include("django.contrib.auth.urls")),
     # Pages
