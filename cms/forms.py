@@ -11,14 +11,20 @@ class PostForm(forms.ModelForm):
         widgets = {"body": SummernoteWidget()}
 
 
-class Editarticle(forms.ModelForm):
+class EditArticle(forms.ModelForm):
     class Meta:
         model = Post
         fields = ["title", "author", "overview", "body", "categories", "thumbnail", "published", "featured",]
         widgets = {"body": SummernoteWidget()}
 
-class Editauthor(forms.ModelForm):
+class EditAuthor(forms.ModelForm):
     class Meta:
         model = Author
         fields = ["fullname", "display_name", "profile_picture", "bio"]
         widgets = {"bio": SummernoteWidget()}
+
+class NewArticle(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ["title", "author", "overview", "body", "categories", "thumbnail", "published", "featured",]
+        widgets = {"body": SummernoteWidget()}
