@@ -3,6 +3,7 @@ from django.apps import apps
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django_summernote.widgets import SummernoteWidget
+from django.forms.widgets import SelectMultiple
 from django.contrib.auth.decorators import login_required
 from .forms import PostForm, EditArticle, EditAuthor, NewArticle
 
