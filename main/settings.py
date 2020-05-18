@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -87,13 +88,8 @@ AUTH_USER_MODEL = "users.CustomUser"
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-    }
-}
-
+DATABASES = {}
+DATABASES["default"] = dj_database_url.config(conn_max_age=600)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -147,8 +143,6 @@ SUMMERNOTE_THEME = "bs4"
 
 SUMMERNOTE_CONFIG = {
     "attachment_require_authentication": True,
-    # "width": "100%",
-    # "height": "800",
 }
 
 # Crispy Forms
@@ -158,8 +152,8 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 ACCOUNT_ADAPTER = (
     "invitations.models.InvitationsAdapter"  # django-invatations integration
 )
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-"""
+# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "email-smtp.us-east-1.amazonaws.com"
 EMAIL_USE_TLS = True
@@ -167,7 +161,7 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
 DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL")
-"""
+
 AUTHENTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of `allauth`
     "django.contrib.auth.backends.ModelBackend",
@@ -192,4 +186,3 @@ ACCOUNT_SIGNUP_FORM_CLASS = "users.forms.SignupForm"
 INVITATIONS_INVITATION_ONLY = True
 INVITE_MODE = True
 INVITATIONS_ACCEPT_INVITE_AFTER_SIGNUP = True
-
