@@ -18,6 +18,8 @@ django-summernote = "*"
 django-crispy-forms = "*"
 django-invitations = "*"
 django-allauth = "*"
+dj-database-url = "*"
+psycopg2 = "*"
 
 [requires]
 python_version = "3.8"
