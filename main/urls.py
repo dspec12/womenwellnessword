@@ -4,6 +4,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from blog.views import index, blog, post_detail, category
+from .override_views import SendInvite
 from cms.views import (
     cms_index,
     CmsArticles,
@@ -18,14 +19,32 @@ from cms.views import (
     CmsNewArticle,
     CmsNewAuthor,
     CmsNewCategory,
+    CmsUsers,
+    CmsDeleteUser,
+    CmsInvites,
 )
 
 urlpatterns = [
     # Admin
     path("summernote/", include("django_summernote.urls")),
     path("admin/", admin.site.urls),
+    # path("invitations/", include("invitations.urls", namespace="invitations")),
     #  CMS
     path("godmode/", cms_index, name="godmode"),
+    # CMS Users
+    path("godmode/users", CmsUsers.as_view(), name="users"),
+    path(
+        "godmode/users/delete/<int:pk>/",
+        CmsDeleteUser.as_view(),
+        name="cms_delete_user",
+    ),
+    path("godmode/invites/", CmsInvites.as_view(), name="invites"),
+    path(
+        "godmode/invites/delete/<int:pk>/",
+        CmsDeleteCategory.as_view(),
+        name="cms_delete_invite",
+    ),
+    # CMS Blog
     path("godmode/articles", CmsArticles.as_view(), name="articles"),
     path(
         "godmode/articles/edit/<int:pk>/",
@@ -63,11 +82,16 @@ urlpatterns = [
     ),
     path("godmode/categories/new/", CmsNewCategory.as_view(), name="cms_new_category",),
     # Auth
-    path("accounts/", include("django.contrib.auth.urls")),
+    # path("accounts/", include("django.contrib.auth.urls")),
+    path("accounts/", include("allauth.urls")),
     # Pages
     path("", index, name="home"),
     # Blog
     path("blog/", blog, name="blog"),
     path("blog/<int:pk>/<slug:slug>", post_detail, name="post_detail"),
     path("blog/category/<str:post_cat>", category, name="category"),
+    # Django-Invites
+    # Override url for django-invatations.SendInvite
+    path("invitations/send-invite/", SendInvite.as_view(), name="send-invite"),
+    path("invitations/", include("invitations.urls", namespace="invitations")),
 ]

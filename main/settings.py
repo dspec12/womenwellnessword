@@ -36,11 +36,16 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "whitenoise.runserver_nostatic",  # Third Party
     "django.contrib.staticfiles",
+    "django.contrib.sites",
     "crispy_forms",  # Third Party
     "users.apps.UsersConfig",  #  Local
     "blog.apps.BlogConfig",  # Local
     "django_summernote",  #  Third Party
     "cms.apps.CmsConfig",  # Local
+    "allauth",  # Third Party
+    "allauth.account",  # Third Party
+    "allauth.socialaccount",  # Third Party
+    "invitations",  # Third Party
 ]
 
 MIDDLEWARE = [
@@ -76,6 +81,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "main.wsgi.application"
 
+# Set Custom User Model
 AUTH_USER_MODEL = "users.CustomUser"
 
 # Database
@@ -145,9 +151,45 @@ SUMMERNOTE_CONFIG = {
     # "height": "800",
 }
 
-# Auth Redirction
-LOGIN_REDIRECT_URL = "godmode"
-LOGOUT_REDIRECT_URL = "login"
-
 # Crispy Forms
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+# AllAuth Settings
+ACCOUNT_ADAPTER = (
+    "invitations.models.InvitationsAdapter"  # django-invatations integration
+)
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+"""
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "email-smtp.us-east-1.amazonaws.com"
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL")
+"""
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    "django.contrib.auth.backends.ModelBackend",
+    # `allauth` specific authentication methods, such as login by e-mail
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
+
+SITE_ID = 1
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
+ACCOUNT_SESSION_REMEMBER = True
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_UNIQUE_EMAIL = True
+LOGIN_REDIRECT_URL = "godmode"
+ACCOUNT_LOGOUT_REDIRECT_URL = "account_login"
+LOGOUT_REDIRECT_URL = "login"
+ACCOUNT_SIGNUP_FORM_CLASS = "users.forms.SignupForm"
+
+# Django-Invitations Settings
+INVITATIONS_INVITATION_ONLY = True
+INVITE_MODE = True
+INVITATIONS_ACCEPT_INVITE_AFTER_SIGNUP = True
+

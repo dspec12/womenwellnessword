@@ -1,0 +1,25 @@
+{% extends 'cms_base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% load i18n %}
+
+
+{% block content %}
+
+<p>Please enter the email address for the user you wish to invite. The user will receive an email with instructions.</p>
+<form id="invite-form" method="POST" action="{% url 'invitations:send-invite' %}">
+    {% csrf_token %}
+    <div class="form-group">
+        <input type="text" name="email" id="id_email" value="{{ form.email.value }}" class="form-control validate-email"
+            placeholder="{% trans 'Email' %}">
+    </div>
+    <div class="form-group">
+        {% for error in form.email.errors %}
+        <div class="alert alert-danger">{{ error }}</div>
+        {% endfor %}
+        {{ success_message }}
+    </div>
+    <input type="submit" value="Submit" class="btn btn-secondary generic-ajax-submit">
+</form>
+
+{% endblock content %}

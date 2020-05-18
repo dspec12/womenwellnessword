@@ -8,6 +8,8 @@ from django.contrib.auth.decorators import login_required
 from .forms import PostForm, EditArticle, EditAuthor, NewArticle
 
 from blog.models import Post, Author, Category
+from users.models import CustomUser
+from invitations.models import Invitation
 
 from django.views.generic import (
     ListView,
@@ -29,7 +31,7 @@ def cms_index(request):
 # def cms_articles(request):
 #     return render(request, "cms_articles.html", context={})
 
-
+# Blog Views
 class CmsArticles(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         get_articles = Post.objects.all().order_by("-timestamp")
@@ -106,3 +108,26 @@ class CmsNewCategory(LoginRequiredMixin, CreateView):
     template_name = "cms_new_category.html"
     fields = ["title"]
     success_url = reverse_lazy("categories")
+
+
+# Users Views
+class CmsUsers(LoginRequiredMixin, ListView):
+    queryset = CustomUser.objects.all().filter(is_superuser=False)
+    template_name = "cms_users.html"
+
+
+class CmsDeleteUser(LoginRequiredMixin, DeleteView):
+    model = CustomUser
+    template_name = "cms_delete_user.html"
+    success_url = reverse_lazy("users")
+
+
+class CmsInvites(LoginRequiredMixin, ListView):
+    queryset = Invitation.objects.all()
+    template_name = "cms_invites.html"
+
+
+class CmsDeleteCategory(LoginRequiredMixin, DeleteView):
+    model = Invitation
+    template_name = "cms_delete_invite.html"
+    success_url = reverse_lazy("invites")

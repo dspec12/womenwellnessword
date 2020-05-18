@@ -16,6 +16,8 @@ pillow = "*"
 django-autoslug = "*"
 django-summernote = "*"
 django-crispy-forms = "*"
+django-invitations = "*"
+django-allauth = "*"
 
 [requires]
 python_version = "3.8"

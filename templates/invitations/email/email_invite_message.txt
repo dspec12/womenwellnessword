@@ -1,0 +1,13 @@
+
+{% load i18n %}
+{% autoescape off %}
+{% blocktrans %}
+
+Hello,
+
+You ({{ email }}) have been invited to be an admin for the Women Wellness & the Word website!
+
+To accept and finish account creation, please go to {{ invite_url }}
+
+{% endblocktrans %}
+{% endautoescape %}
