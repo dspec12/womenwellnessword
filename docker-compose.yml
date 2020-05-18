@@ -8,6 +8,8 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
   app:
+    depends_on:
+      - db
     build:
       context: .
     ports:
