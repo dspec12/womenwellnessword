@@ -33,6 +33,7 @@
           heart and body as His holy temple so that it is healthy and ready for His service. Our passion as women
           professionals is to offer the practical guidance necessary for improvement through love. We also hope to have
           loads of fun!</p>
+        <a href="{% url 'about' %}" type="button" class="btn btn-secondary">Learn More!</a>
       </div>
     </div>
   </div>
@@ -98,8 +99,9 @@
     <div class="row">
       {% for post in latest %}
       <div class="post col-md-4">
-        <div class="post-thumbnail"><a href="{{ post.get_absolute_url }}"><img src="{{  post.thumbnail.url }}" alt="..."
-              class="img-fluid"></a>
+        <div class="post-thumbnail"
+          style="background-image: url('{{ post.thumbnail.url }}'); background-size: cover; height: 20rem; width: auto;">
+          <a href="{{ post.get_absolute_url }}"></a>
         </div>
         <div class="post-details">
           <div class="post-meta d-flex justify-content-between">
@@ -119,7 +121,6 @@
     </div>
   </div>
 </section>
-{% comment %}
 <!-- Newsletter Section-->
 <section class="newsletter no-padding-top">
   <div class="container">
@@ -130,11 +131,19 @@
           ut labore et dolore magna aliqua.</p>
       </div>
       <div class="col-md-8">
-        <div class="form-holder">
-          <form action="#">
-            <div class="form-group">
-              <input type="email" name="email" id="email" placeholder="Type your email address">
-              <button type="submit" class="submit" style="background-color: rgb(120, 9, 6);">Subscribe</button>
+        <div id="mc_embed_signup">
+          <form
+            action="https://womenwellnessword.us4.list-manage.com/subscribe/post?u=5ec5e56471acd52d1d72af56d&amp;id=e46bd8a0c9"
+            method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate"
+            target="_blank" novalidate>
+            <div id="mc_embed_signup_scroll">
+              <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address"
+                required>
+              <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+              <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text"
+                  name="b_5ec5e56471acd52d1d72af56d_e46bd8a0c9" tabindex="-1" value=""></div>
+              <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe"
+                  class="button"></div>
             </div>
           </form>
         </div>
@@ -142,6 +151,5 @@
     </div>
   </div>
 </section>
-{% endcomment %}
 
 {% endblock content %}
