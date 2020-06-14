@@ -3,6 +3,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+from main.views import AboutPageView
 from blog.views import index, blog, post_detail, category
 from .override_views import SendInvite
 from cms.views import (
@@ -31,6 +32,8 @@ urlpatterns = [
     # path("invitations/", include("invitations.urls", namespace="invitations")),
     #  CMS
     path("godmode/", cms_index, name="godmode"),
+    # About Page
+    path("about/", AboutPageView.as_view(), name="about"),
     # CMS Users
     path("godmode/users", CmsUsers.as_view(), name="users"),
     path(
