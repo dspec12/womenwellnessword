@@ -60,7 +60,7 @@
               </a>
             </header>
             <p>{{ post.overview|linebreaks|truncatechars:200 }}</p>
-            <footer class="post-footer d-flex align-items-center"><a href="#"
+            <footer class="post-footer d-flex align-items-center"><a href="{% url 'about' %}"
                 class="author d-flex align-items-center flex-wrap">
                 <div class="avatar"><img src="{{ post.author.profile_picture.url }}" alt="..." class="img-fluid"></div>
                 <div class="title"><span>{{ post.author }}</span></div>
