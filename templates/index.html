@@ -33,7 +33,6 @@
           heart and body as His holy temple so that it is healthy and ready for His service. Our passion as women
           professionals is to offer the practical guidance necessary for improvement through love. We also hope to have
           loads of fun!</p>
-        <a href="{% url 'about' %}" type="button" class="btn btn-secondary">Learn More!</a>
       </div>
     </div>
   </div>
@@ -61,7 +60,7 @@
               </a>
             </header>
             <p>{{ post.overview|linebreaks|truncatechars:200 }}</p>
-            <footer class="post-footer d-flex align-items-center"><a href="#"
+            <footer class="post-footer d-flex align-items-center"><a href="{% url 'about' %}"
                 class="author d-flex align-items-center flex-wrap">
                 <div class="avatar"><img src="{{ post.author.profile_picture.url }}" alt="..." class="img-fluid"></div>
                 <div class="title"><span>{{ post.author }}</span></div>
@@ -122,6 +121,7 @@
   </div>
 </section>
 <!-- Newsletter Section-->
+{% comment %}
 <section class="newsletter no-padding-top">
   <div class="container">
     <div class="row">
@@ -150,5 +150,6 @@
     </div>
   </div>
 </section>
+{% endcomment %}
 
 {% endblock content %}
