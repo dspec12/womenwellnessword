@@ -125,9 +125,3 @@ class CmsDeleteUser(LoginRequiredMixin, DeleteView):
 class CmsInvites(LoginRequiredMixin, ListView):
     queryset = Invitation.objects.all()
     template_name = "cms_invites.html"
-
-
-class CmsDeleteCategory(LoginRequiredMixin, DeleteView):
-    model = Invitation
-    template_name = "cms_delete_invite.html"
-    success_url = reverse_lazy("invites")
