@@ -28,8 +28,7 @@ from cms.views import (
 urlpatterns = [
     # Admin
     path("summernote/", include("django_summernote.urls")),
-    path("admin/", admin.site.urls),
-    # path("invitations/", include("invitations.urls", namespace="invitations")),
+    path("dspec12/", admin.site.urls),
     #  CMS
     path("godmode/", cms_index, name="godmode"),
     # About Page
@@ -59,7 +58,11 @@ urlpatterns = [
         CmsDeleteArticle.as_view(),
         name="cms_delete_article",
     ),
-    path("godmode/articles/new/", CmsNewArticle.as_view(), name="cms_new_article",),
+    path(
+        "godmode/articles/new/",
+        CmsNewArticle.as_view(),
+        name="cms_new_article",
+    ),
     path("godmode/authors", CmsAuthors.as_view(), name="authors"),
     path(
         "godmode/authors/edit/<int:pk>/",
@@ -71,7 +74,11 @@ urlpatterns = [
         CmsDeleteAuthor.as_view(),
         name="cms_delete_author",
     ),
-    path("godmode/authors/new/", CmsNewAuthor.as_view(), name="cms_new_author",),
+    path(
+        "godmode/authors/new/",
+        CmsNewAuthor.as_view(),
+        name="cms_new_author",
+    ),
     path("godmode/categories", CmsCategories.as_view(), name="categories"),
     path(
         "godmode/categories/edit/<int:pk>/",
@@ -83,9 +90,12 @@ urlpatterns = [
         CmsDeleteCategory.as_view(),
         name="cms_delete_category",
     ),
-    path("godmode/categories/new/", CmsNewCategory.as_view(), name="cms_new_category",),
+    path(
+        "godmode/categories/new/",
+        CmsNewCategory.as_view(),
+        name="cms_new_category",
+    ),
     # Auth
-    # path("accounts/", include("django.contrib.auth.urls")),
     path("accounts/", include("allauth.urls")),
     # Pages
     path("", index, name="home"),
