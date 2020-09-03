@@ -2,6 +2,8 @@ from django.db import models
 from autoslug import AutoSlugField
 from django.contrib.auth import get_user_model
 from django.urls import reverse
+from django.utils import timezone
+
 
 User = get_user_model()
 
@@ -27,7 +29,7 @@ class Post(models.Model):
     title = models.CharField(max_length=100)
     slug = AutoSlugField(populate_from="title")
     overview = models.CharField(max_length=200)
-    timestamp = models.DateTimeField(auto_now_add=True)
+    timestamp = models.DateTimeField(default=timezone.now)
     body = models.TextField()
     author = models.ForeignKey(Author, null=True, on_delete=models.SET_NULL)
     thumbnail = models.ImageField()

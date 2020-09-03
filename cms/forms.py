@@ -1,4 +1,3 @@
-
 from django import forms
 from django.forms import CheckboxSelectMultiple
 from django_summernote.widgets import SummernoteWidget
@@ -15,8 +14,19 @@ class PostForm(forms.ModelForm):
 class EditArticle(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ["title", "author", "overview", "body", "categories", "thumbnail", "published", "featured",]
+        fields = [
+            "title",
+            "author",
+            "timestamp",
+            "overview",
+            "body",
+            "categories",
+            "thumbnail",
+            "published",
+            "featured",
+        ]
         widgets = {"body": SummernoteWidget(), "categories": CheckboxSelectMultiple()}
+
 
 class EditAuthor(forms.ModelForm):
     class Meta:
@@ -24,8 +34,18 @@ class EditAuthor(forms.ModelForm):
         fields = ["fullname", "display_name", "profile_picture", "bio"]
         widgets = {"bio": SummernoteWidget()}
 
+
 class NewArticle(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ["title", "author", "overview", "body", "categories", "thumbnail", "published", "featured",]
+        fields = [
+            "title",
+            "author",
+            "overview",
+            "body",
+            "categories",
+            "thumbnail",
+            "published",
+            "featured",
+        ]
         widgets = {"body": SummernoteWidget(), "categories": CheckboxSelectMultiple}
