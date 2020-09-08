@@ -76,6 +76,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "main.context_processors.discus_app",
             ],
         },
     },
@@ -99,9 +100,15 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",},
-    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",},
-    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},
+    {
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+    },
 ]
 
 
@@ -187,3 +194,6 @@ ACCOUNT_SIGNUP_FORM_CLASS = "users.forms.SignupForm"
 INVITATIONS_INVITATION_ONLY = True
 INVITE_MODE = True
 INVITATIONS_ACCEPT_INVITE_AFTER_SIGNUP = True
+
+# Discus Vars
+DISQUS_APP = os.environ.get("DISQUS_APP")
